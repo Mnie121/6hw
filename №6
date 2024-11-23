@@ -1,0 +1,24 @@
+result = []
+
+def divider(a, b):
+    if type(a) != type(b):
+        raise TypeError(f"{a}({type(a).__name__}) и {b}({type(b).__name__}) имеют разные типы данных.")
+    if a < b:
+        raise ValueError(f"{a} меньше {b}.")
+    if b > 100:
+        raise ValueError(f"{b} больше 100.")
+    if b==0:
+        raise ZeroDivisionError(f'{a} не может делиться на {b}. Деление на ноль.')
+    return a / b
+
+data = {10: 2, 2: 5, "123": 4, 18: 0, (): 15, 8: 4}
+
+for key in data:
+    try:
+        res = divider(key, data[key])
+        result.append(res)
+        if key%data[key]==0:
+            result.append(res)
+            print(f'Удачное деление. {key}/{data[key]}={res}')
+    except (TypeError, ZeroDivisionError, ValueError) as error:
+        print(f'Ошибка для {key} и {data[key]}: {error}')
